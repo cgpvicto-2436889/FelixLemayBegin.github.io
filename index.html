@@ -5,65 +5,115 @@
 
   <title>Memory Game</title>
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
+  
+    <dialog id="dialog">
+      <header>
+        <p id="header1" style="font-size: 45px;">Projet personnel</p>
+          <hr style="margin-left: 30px; margin-right: 30px;">
+        <p id="header2" style="font-size: 15px;">Design web gr.2 - Automne 2024</p>
+      </header>
+        
+        <br>
+        <br>
+        <br>
+      
+        <div id="h2">
+          <div>
+            <h3>
+              <p id="p1">Réalisé par</p>
+            </h3>
+              <p id="p2">Félix Lemay Bégin</p>
+            <h3>
+              <br>
+              <p id="p3">Inspiration</p>
+            </h3>
+            <a href=" https://github.com/code-sketch/memory-game">https://github.com/code-sketch/memory-game</a>
+          </div>
+          <img src="images/megaman.png" alt="megaman" id="megaman">
+      </div>
+      
+      
+      
+      <footer>
+        <button id="fermerFenetre" style="padding: 10px; border-radius: 15px; font-size: 35px;" onclick="FermerFenetre()">Fermer la fenêtre</button>
+        <button id="nePlusAfficherCetteFenetre" style="padding: 10px; border-radius: 15px; font-size: 14px; background-color: transparent; border-color: transparent;" onclick="FermerIndefiniment()">Ne plus afficher cette fenêtre</button> 
+      </footer>
+      <form method="dialog">
+      </form>
+    </dialog>
+  
+  <div class="compteur">
+      <div id="debut-compteur-boite">
+        <button id="debut-compteur" style="border-radius: 25px;">COMMENCER</button>
+      </div>
+
+      <div id="temps-boite">
+        <input id="temps" value="0" type="text" style="width: 60%; border-radius: 25px;" >
+      </div>
+  </div>
+
   <section class="memory-game">
-    <div class="memory-card" data-framework="aurelia">
-      <img class="front-face" src="../img/aurelia.svg" alt="Aurelia" />
-      <img class="back-face" src="../img/js-badge.svg" alt="JS Badge" />
+    
+    
+    
+    <div class="memory-card" data-framework="baron">
+      <img class="front-face" src="images/Baron.png" alt="Baron" />
+      <img class="back-face" src="images/Logos.png" alt="Logos" />
     </div>
-    <div class="memory-card" data-framework="aurelia">
-      <img class="front-face" src="../img/aurelia.svg" alt="Aurelia" />
-      <img class="back-face" src="../img/js-badge.svg" alt="JS Badge" />
-    </div>
-
-    <div class="memory-card" data-framework="vue">
-      <img class="front-face" src="../img/vue.svg" alt="Vue" />
-      <img class="back-face" src="../img/js-badge.svg" alt="JS Badge" />
-    </div>
-    <div class="memory-card" data-framework="vue">
-      <img class="front-face" src="../img/vue.svg" alt="Vue" />
-      <img class="back-face" src="../img/js-badge.svg" alt="JS Badge" />
+    <div class="memory-card" data-framework="baron">
+      <img class="front-face" src="images/Baron.png" alt="Baron" />
+      <img class="back-face" src="images/Logos.png" alt="Logos" />
     </div>
 
-    <div class="memory-card" data-framework="angular">
-      <img class="front-face" src="../img/angular.svg" alt="Angular" />
-      <img class="back-face" src="../img/js-badge.svg" alt="JS Badge" />
+    <div class="memory-card" data-framework="brumbleback">
+      <img class="front-face" src="images/Brumbleback.png" alt="Brumbleback" />
+      <img class="back-face" src="images/Logos.png" alt="Logos" />
     </div>
-    <div class="memory-card" data-framework="angular">
-      <img class="front-face" src="../img/angular.svg" alt="Angular" />
-      <img class="back-face" src="../img/js-badge.svg" alt="JS Badge" />
-    </div>
-
-    <div class="memory-card" data-framework="ember">
-      <img class="front-face" src="../img/ember.svg" alt="Ember" />
-      <img class="back-face" src="../img/js-badge.svg" alt="JS Badge" />
-    </div>
-    <div class="memory-card" data-framework="ember">
-      <img class="front-face" src="../img/ember.svg" alt="Ember" />
-      <img class="back-face" src="../img/js-badge.svg" alt="JS Badge" />
+    <div class="memory-card" data-framework="brumbleback">
+      <img class="front-face" src="images/Brumbleback.png" alt="Brumbleback" />
+      <img class="back-face" src="images/Logos.png" alt="Logos" />
     </div>
 
-    <div class="memory-card" data-framework="backbone">
-      <img class="front-face" src="../img/backbone.svg" alt="Backbone" />
-      <img class="back-face" src="../img/js-badge.svg" alt="JS Badge" />
+    <div class="memory-card" data-framework="gromp">
+      <img class="front-face" src="images/Gromp.png" alt="Gromp" />
+      <img class="back-face" src="images/Logos.png" alt="Logos" />
     </div>
-    <div class="memory-card" data-framework="backbone">
-      <img class="front-face" src="../img/backbone.svg" alt="Backbone" />
-      <img class="back-face" src="../img/js-badge.svg" alt="JS Badge" />
+    <div class="memory-card" data-framework="gromp">
+      <img class="front-face" src="images/Gromp.png" alt="Gromp" />
+      <img class="back-face" src="images/Logos.png" alt="Logos" />
     </div>
 
-    <div class="memory-card" data-framework="react">
-      <img class="front-face" src="../img/react.svg" alt="React" />
-      <img class="back-face" src="../img/js-badge.svg" alt="JS Badge" />
+    <div class="memory-card" data-framework="herald">
+      <img class="front-face" src="images/Herald.png" alt="Herald" />
+      <img class="back-face" src="images/Logos.png" alt="Logos" />
     </div>
-    <div class="memory-card" data-framework="react">
-      <img class="front-face" src="../img/react.svg" alt="React" />
-      <img class="back-face" src="../img/js-badge.svg" alt="JS Badge" />
+    <div class="memory-card" data-framework="herald">
+      <img class="front-face" src="images/Herald.png" alt="Herald" />
+      <img class="back-face" src="images/Logos.png" alt="Logos" />
+    </div>
+
+    <div class="memory-card" data-framework="scuttle">
+      <img class="front-face" src="images/Scuttle.png" alt="Scuttle" />
+      <img class="back-face" src="images/Logos.png" alt="Logos" />
+    </div>
+    <div class="memory-card" data-framework="scuttle">
+      <img class="front-face" src="images/Scuttle.png" alt="Scuttle" />
+      <img class="back-face" src="images/Logos.png" alt="Logos" />
+    </div>
+
+    <div class="memory-card" data-framework="minion">
+      <img class="front-face" src="images/Minion.png" alt="Minion" />
+      <img class="back-face" src="images/Logos.png" alt="Logos" />
+    </div>
+    <div class="memory-card" data-framework="minion">
+      <img class="front-face" src="images/Minion.png" alt="Minion" />
+      <img class="back-face" src="images/Logos.png" alt="Logos" />
     </div>
   </section>
 
-  <script src="scripts.js"></script>
+  <script src="assets/script.js"></script>
 </body>
 </html>

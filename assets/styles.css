@@ -1,4 +1,13 @@
-* {
+body,
+.memory-game, 
+.memory-card, 
+.memory-card:active, 
+.memory-card.flip, .front-face, 
+.back-face, #debut-compteur-boite, 
+#fin-compteur-boite,
+#temps-boite,
+#temps,
+button {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -7,7 +16,7 @@
 body {
   height: 100vh;
   display: flex;
-  background: #060AB2;
+  background: orange;
 }
 
 .memory-game {
@@ -46,10 +55,92 @@ body {
   padding: 20px;
   position: absolute;
   border-radius: 5px;
-  background: #1C7CCC;
+  background: violet;
   backface-visibility: hidden;
 }
 
 .front-face {
   transform: rotateY(180deg);
+}
+
+/*=========================================================================================*/
+
+#debut-compteur-boite,
+#fin-compteur-boite
+{
+  font-size: 300%;
+  text-align: center;
+}
+
+#temps-boite
+{
+  font-size: 200px;
+  text-align: center;
+}
+
+#temps
+{
+  font-size: 30px;
+  text-align: center;
+}
+
+button
+{
+  font-size: 100%;
+  text-align: center;
+}
+
+
+/*Pour le dialog*/
+
+dialog
+{
+  margin: auto;
+  border-radius: 30px;
+}
+
+#fermerFenetre,
+#nePlusAfficherCetteFenetre
+{
+  display: flex;
+  margin: auto;
+}
+
+#header1,
+#header2
+{
+  text-align: center;
+  margin: 10px;
+  padding: 0px;
+}
+
+h3
+{
+  margin: 0px;
+  height: 40px;
+}
+
+#p1,
+#p2,
+#p3
+{
+  margin: 0px;
+}
+
+#h2
+{
+  display: flex;
+  max-height: 200px;
+}
+
+dialog::backdrop
+{
+  background-color: rgba(93, 188, 251, 0.5);
+}
+
+#megaman
+{
+  max-width: 200px;
+  max-height: 150px;
+  text-align: right;
 }
