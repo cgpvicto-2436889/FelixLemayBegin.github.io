@@ -129,21 +129,25 @@ const dialog = document.getElementById("dialog");
 const fermerFenetre = document.getElementById("fermerFenetre");
 const fermerIndefiniment = document.getElementById("nePlusAfficherCetteFenetre");
 
-// Vérification du localStorage pour savoir si on doit afficher le dialog
+/**
+ * Vérification du localStorage pour savoir si on doit afficher le dialog
+ */
 if(localStorage.getItem("nePlusAfficher") !== "true")
 {
   // Affiche le dialogue si "nePlusAfficher" n'est pas défini ou n'est pas "true"
   dialog.showModal();
 }
 
-
-// Fonction pour fermer la fenêtre temporairement
+/**
+ * Fonction pour fermer la fenêtre temporairement
+ */
 function FermerFenetre()
 {
     dialog.close();
 }
-
-// Fonction pour ne plus afficher la fenêtre définitivement
+/**
+ * Fonction pour ne plus afficher la fenêtre définitivement
+ */
 function FermerIndefiniment()
 {
   localStorage.setItem("nePlusAfficher", "true");  
