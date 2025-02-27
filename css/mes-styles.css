@@ -1,0 +1,53 @@
+i
+{
+    font-size: 2em;
+}
+
+#assassin
+{
+    color: deepskyblue;
+}
+
+#bruiser
+{
+    color: red;
+}
+
+#mage
+{
+    color: purple;
+}
+
+#support
+{
+    color: deeppink;
+}
+
+#tank
+{
+    color: orangered;
+}
+
+.items .item.first {
+    background: url('../medias/commun/assassin.jpg');
+    background-size: contain;
+}
+
+.items .item.second {
+    background: url('../medias/commun/bruiser.png');
+    background-size: contain;
+}
+
+.items .item.third {
+    background: url('../medias/commun/mage.png');
+    background-size: contain;
+}
+.items .item.fourth {
+    background: url('../medias/commun/support.jpg');
+    background-size: contain;
+}
+
+.items .item.fifth {
+    background: url('../medias/commun/tank.jpg');
+    background-size: contain;
+}
