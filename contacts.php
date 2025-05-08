@@ -1,9 +1,11 @@
 <?php
     require ('include/configuration.inc');
     require ('include/entete.inc');
+?>
 
-    echo "<body>";
 
+
+<?php
     require ('include/pied-page.inc');
     require ('include/nettoyage.inc');
 ?>

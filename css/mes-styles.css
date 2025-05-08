@@ -1,53 +1,201 @@
-i
-{
+i {
     font-size: 2em;
 }
 
-#assassin
-{
-    color: deepskyblue;
+[class^="item"] {
+    background-size: cover;
+    background-position: center;
 }
 
-#bruiser
-{
+.item1 { background-image: url("medias/commun/item1.jpg"); }
+.item2 { background-image: url("medias/commun/item2.jpg"); }
+.item3 { background-image: url("medias/commun/item3.jpg"); }
+.item4 { background-image: url("medias/commun/item4.jpg"); }
+.item5 { background-image: url("medias/commun/item5.jpg"); }
+.item6 { background-image: url("medias/commun/item6.jpg"); }
+.item7 { background-image: url("medias/commun/item7.jpg"); }
+.item8 { background-image: url("medias/commun/item8.jpg"); }
+.item9 { background-image: url("medias/commun/item9.jpg"); }
+.item10 { background-image: url("medias/commun/item10.jpg"); }
+
+.debug {
+    display: block;
+    background-color: #FCA12D;
+    color: black;
+    font-size: 1.1em;
+    padding: 5px 10px;
+    border: 1px solid #F18A04;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+
+.table {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: left;
+}
+
+.table, .table th, .table td {
+    border: 1px solid rgb(160, 160, 160);
+    padding: 15px;
+}
+
+.table th {
+    background: #28ade6;
+    color: white;
+    font-size: 18px;
+}
+
+.boutton-style {
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.boutton-style:hover {
+    background-color: #0056b3;
+}
+
+.boutton-style:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.boutton-style:active {
+    background-color: #003f7f;
+}
+
+.boutton-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+form {
+    width: 50%;
+    margin: auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contactez-nous {
+    text-align: center;
+}
+
+.message-erreur-formulaire {
     color: red;
 }
 
-#mage
-{
-    color: purple;
+.controle-erreur {
+    border: 2px solid red;
 }
 
-#support
-{
-    color: deeppink;
+.alert {
+    display: block;
+    color: white;
+    font-size: 1.1em;
+    margin-top: 5px;
+    margin-bottom: 7px;
+    padding: 15px 20px;
+    border: 1px solid #bebdbd;
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
 }
 
-#tank
-{
-    color: orangered;
+.alert-success {
+    background-color: #55b559;
 }
 
-.items .item.first {
-    background: url('../medias/commun/assassin.jpg');
-    background-size: contain;
+.alert-danger {
+    background-color: #f55145;
 }
 
-.items .item.second {
-    background: url('../medias/commun/bruiser.png');
-    background-size: contain;
+nav {
+    width: 100%; /* Pour que la barre de navigation prenne toute la largeur de son parent */
+    padding-top: 0 !important;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: url('../medias/commun/bg-nav.png') repeat-x; /* J'ai remis le background que tu avais */
+    background-color: var(--couleur-secondaire-fonce); /* J'ai remis la couleur de fond */
 }
 
-.items .item.third {
-    background: url('../medias/commun/mage.png');
-    background-size: contain;
-}
-.items .item.fourth {
-    background: url('../medias/commun/support.jpg');
-    background-size: contain;
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    flex-wrap: wrap;
+    width: 100%; /* Pour que le conteneur interne prenne aussi toute la largeur */
+    max-width: none; /* Pour annuler le max-width du container principal si nécessaire */
+    margin: 0; /* Pour s'assurer qu'il n'y a pas de marges latérales */
 }
 
-.items .item.fifth {
-    background: url('../medias/commun/tank.jpg');
-    background-size: contain;
+.nav-gauche,
+.nav-droite {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-gauche a,
+.nav-droite a {
+    margin-right: 20px;
+    color: var(--couleur-principale-pale); /* J'ai remis la couleur de texte par défaut */
+    text-decoration: none;
+    font-weight: 500;
+    padding: 7px 12px; /* J'ai remis le padding */
+    border-radius: 8px; /* J'ai remis le border-radius */
+}
+
+.texte-auth {
+    color: red;
+    margin-right: 10px;
+    font-weight: bold;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+.nav-gauche a:hover {
+    color: #2C3111; /* J'ai remis la couleur au survol */
+}
+
+.icone-auth {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.icone-auth:hover {
+    color: #f0a500;
 }
