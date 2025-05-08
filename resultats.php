@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once 'include/ma-bibliotheque.php';
 require_once 'include/configuration.inc'; // Assurez-vous que ce fichier contient la connexion PDO à PostgreSQL
 
