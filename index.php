@@ -2,18 +2,18 @@
 require ('include/configuration.inc');
 require ('include/entete.inc');
 
-    if (isset($_GET['message'])) {
-        if ($_GET['message'] === 'ajoutE-ok') {
-            echo '<p class="confirmation">Votre equipe a bien été créée !</p>';
-        } elseif ($_GET['message'] === 'ajoutR-ok') {
-            echo '<p class="confirmation">Votre résultat a bien été ajouté !</p>';
-        } elseif ($_GET['message'] === 'envoi-ok') {
-            echo '<p class="confirmation">Votre message a bien été envoyé. Merci !</p>';
-        } elseif ($_GET['message'] === 'erreur') {
-            echo '<p class="erreur">Une erreur est survenue. Veuillez réessayer plus tard.</p>';
-        }
+if (isset($_GET['message'])) {
+    if ($_GET['message'] === 'ajoutE-ok') {
+        echo '<p class="confirmation">Votre equipe a bien été créée !</p>';
+    } elseif ($_GET['message'] === 'ajoutR-ok') {
+        echo '<p class="confirmation">Votre résultat a bien été ajouté !</p>';
+    } elseif ($_GET['message'] === 'envoi-ok') {
+        echo '<p class="confirmation">Votre message a bien été envoyé. Merci !</p>';
+    } elseif ($_GET['message'] === 'erreur') {
+        echo '<p class="erreur">Une erreur est survenue. Veuillez réessayer plus tard.</p>';
     }
-    echo  '<div class="items">';
+}
+echo  '<div class="items">';
 $requete = "SELECT nom, slogan, id FROM equipes";
 $stmt = $pdo->query($requete);
 
@@ -46,12 +46,12 @@ if ($stmt) {
 }
 
 
-    echo  '</div>';
-    if (isset($_SESSION['usager'])) {
-        echo '<div class="boutton-container">';
-        echo '    <a href="formulaire-equipe.php" class="boutton-style">Ajouter une équipe</a>';
-        echo '</div>';
-    }
+echo  '</div>';
+if (isset($_SESSION['usager'])) {
+    echo '<div class="boutton-container">';
+    echo '    <a href="formulaire-equipe.php" class="boutton-style">Ajouter une équipe</a>';
+    echo '</div>';
+}
 
 
 
