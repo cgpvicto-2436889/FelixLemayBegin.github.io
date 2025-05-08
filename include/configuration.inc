@@ -3,10 +3,12 @@
     require_once 'include/ma-bibliotheque.php';
 // ─── 4. Connexion PDO (PostgreSQL Supabase ou MySQL fallback) ───────────
 $supabase_pooler_url = getenv('SUPABASE_POOLER_URL');
-if ($supabase_pooler_url) {
+if ($supabase_pooler_url) 
+{
     // Connexion PostgreSQL
     $parsed = parse_url($supabase_pooler_url);
-    if (!$parsed || !isset($parsed['host'], $parsed['user'], $parsed['pass'], $parsed['path'])) {
+    if (!$parsed || !isset($parsed['host'], $parsed['user'], $parsed['pass'], $parsed['path']))
+    {
         die("L'URL de connexion Supabase est invalide ou mal formée.");
     }
     $host   = $parsed['host'];
@@ -15,27 +17,37 @@ if ($supabase_pooler_url) {
     $pass   = $parsed['pass'];
     $dbname = ltrim($parsed['path'], '/');
     $dsn    = "pgsql:host=$host;port=$port;dbname=$dbname";
-    try {
+    try 
+    {
         $pdo = new PDO($dsn, $user, $pass, [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]);
-    } catch (PDOException $e) {
+    } 
+    catch (PDOException $e)
+    {
         die("Erreur de connexion PostgreSQL : " . $e->getMessage());
     }
-} else {
+
+} 
+
+else 
+{
     // Fallback MySQL (Render)
     $dbHost = getenv('MYSQL_HOST')     ?: 'localhost';
     $dbName = getenv('MYSQL_DATABASE') ?: 'db_name';
     $dbUser = getenv('MYSQL_USER')     ?: 'user';
     $dbPass = getenv('MYSQL_PASSWORD') ?: 'pass';
     $dsn    = "mysql:host={$dbHost};dbname={$dbName};charset=utf8mb4";
-    try {
+    try 
+    {
         $pdo = new PDO($dsn, $dbUser, $dbPass, [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]);
-    } catch (PDOException $e) {
+    }
+    catch (PDOException $e)
+    {
         die("Erreur de connexion MySQL : " . $e->getMessage());
     }
 }
@@ -58,12 +70,15 @@ if ($supabase_pooler_url) {
     $resultat = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // Si on ne trouve pas de résultat, on met des valeurs par défaut
-    if ($resultat) {
+    if ($resultat) 
+    {
         $titre = $resultat['titre'];
         $description = $resultat['description'];
         $h1 = $resultat['h1'];
         $texte = $resultat['texte'];
-    } else {
+    } 
+    else
+    {
         $titre = "Page introuvable";
         $description = "Aucune description disponible.";
         $h1 = "Erreur 404";
@@ -73,7 +88,8 @@ if ($supabase_pooler_url) {
     // Fermeture du curseur (facultatif avec PDO)
     $stmt->closeCursor();
 
-} catch (PDOException $e) {
+catch (PDOException $e) 
+{
     die("Erreur de connexion ou SQL : " . $e->getMessage());
 }
 

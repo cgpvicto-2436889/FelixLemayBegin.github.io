@@ -12,13 +12,13 @@ if (empty($code) || empty($motDePasse)) {
     exit;
 }
 
-$requete = "SELECT * FROM usagers WHERE code = ? AND actif = 1";
-$stmt = $mysqli->prepare($requete);
-$stmt->bind_param('s', $code);
+$requete = "SELECT * FROM usagers WHERE code = :code AND actif = 1";
+$stmt = $pdo->prepare($requete);
+$stmt->bindParam(':code', $code);
 $stmt->execute();
-$resultat = $stmt->get_result();
+$usager = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($usager = $resultat->fetch_assoc()) {
+if ($usager) {
     if (password_verify($motDePasse, $usager['motdepasse'])) {
         $_SESSION['usager'] = [
             'id' => $usager['id'],
