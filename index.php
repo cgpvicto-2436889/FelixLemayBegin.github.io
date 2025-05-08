@@ -14,39 +14,36 @@ require ('include/entete.inc');
         }
     }
     echo  '<div class="items">';
-    $requete = "SELECT nom, slogan, id FROM equipes ";
-    $resultat = $mysqli->query($requete);
+$requete = "SELECT nom, slogan, id FROM equipes";
+$stmt = $pdo->query($requete);
 
-    if ($resultat) {
-        if ($resultat->num_rows > 0) {
-            while ($enreg = $resultat->fetch_row())
-            {
-                echo '<div class="item first">';
-                echo '<a href="#">';
-                echo '<div class="content">';
-
-                echo '</div>';
-                echo '<div class="caption">';
-                echo '<div class="middle">';
-                echo '<i class="fa-solid fa-shield"></i>';
-                echo '</div>';
-                echo "<div class='title'>$enreg[0]</div>";
-                echo "<div class='subtitle'>$enreg[1]</div>";
-                echo '</div>';
-                echo " <a href='details-equipe.php?id= $enreg[2]' class='boutton-style'>Joueurs</a> ";
-                echo '</a>';
-
-                echo '</div>';
-            }
-        } else {
-            echo "<p class='message-avertissement'>Il n'y a présentement aucun item.</p>";
+if ($stmt) {
+    if ($stmt->rowCount() > 0) {
+        while ($enreg = $stmt->fetch(PDO::FETCH_ROW)) {
+            echo '<div class="item first">';
+            echo '<a href="#">';
+            echo '<div class="content">';
+            echo '</div>';
+            echo '<div class="caption">';
+            echo '<div class="middle">';
+            echo '<i class="fa-solid fa-shield"></i>';
+            echo '</div>';
+            echo "<div class='title'>$enreg[0]</div>";
+            echo "<div class='subtitle'>$enreg[1]</div>";
+            echo '</div>';
+            echo " <a href='details-equipe.php?id=" . $enreg[2] . "' class='boutton-style'>Joueurs</a> ";
+            echo '</a>';
+            echo '</div>';
         }
-
-        $resultat->free();
     } else {
-        echo "<p class='message-erreur'>Nous sommes désolés, les items ne peuvent pas être affichés.</p>";
-        echo_debug($mysqli->error);
+        echo "<p class='message-avertissement'>Il n'y a présentement aucun item.</p>";
     }
+
+    // Pas besoin de faire $stmt->free() avec PDO
+} else {
+    echo "<p class='message-erreur'>Nous sommes désolés, les items ne peuvent pas être affichés.</p>";
+    echo_debug($pdo->errorInfo()[2]); // Récupération de l'erreur PDO
+}
 
 
     echo  '</div>';
