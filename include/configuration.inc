@@ -88,11 +88,6 @@ else
     // Fermeture du curseur (facultatif avec PDO)
     $stmt->closeCursor();
 
-catch (PDOException $e) 
-{
-    die("Erreur de connexion ou SQL : " . $e->getMessage());
-}
-
 // Vous pouvez maintenant utiliser les variables $titre, $description, $h1 et $texte
 // pour afficher le contenu de votre page.
 
