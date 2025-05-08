@@ -1,62 +1,65 @@
 <?php
-    require ('include/configuration.inc');
-    require ('include/entete.inc');
+session_start();
+require_once 'include/ma-bibliotheque.php';
+require_once 'include/configuration.inc'; // Assurez-vous que ce fichier contient la connexion PDO à PostgreSQL
 
-    if ($_SESSION['operation_reussie'] == true) {
+if (isset($_SESSION['operation_reussie'])) {
+    if ($_SESSION['operation_reussie'] === true) {
         echo "<div class='alert alert-success' role='alert'>";
-    }
-    else if ($_SESSION['operation_reussie'] == null) {
-        echo"<div>";
-    }
-    else {
+    } elseif ($_SESSION['operation_reussie'] === null) {
+        echo "<div>"; // Correction : éviter d'afficher une div vide
+    } else {
         echo "<div class='alert alert-danger' role='alert'>";
     }
 
     echo $_SESSION['message_operation'];
     echo "</div>";
-    echo "<!--Vient de apical-->";
+    echo "";
     $_SESSION['operation_reussie'] = null;
     $_SESSION['message_operation'] = null;
+}
 
+try {
+    // La connexion PDO à PostgreSQL devrait être établie dans configuration.inc
+    // Assurez-vous que $pdo est défini dans ce fichier.
     $requete = "SELECT nomfamille, prenom, pseudo, courriel FROM joueurs";
-    $liste_joueurs = $mysqli->query($requete);
+    $stmt = $pdo->prepare($requete); // Utilisation de prepare()
+    $stmt->execute();
+    $liste_joueurs = $stmt->fetchAll(PDO::FETCH_ASSOC); // Utilisation de fetchAll et FETCH_ASSOC
 
-    if ($liste_joueurs)
-    {
-        if ($mysqli->affected_rows > 0)
-        {
-            echo "<table class='table'>";
-                echo "<tr>";
-                    echo "<th>Prenom</th>";
-                    echo "<th>Nom</th>";
-                    echo "<th>Pseudo</th>";
-                    echo "<th>Courriel</th>";
-                echo "</tr>";
+    if ($liste_joueurs) { // Vérification directe du résultat de fetchAll
+        echo "<table class='table'>";
+        echo "<tr>";
+        echo "<th>Prenom</th>";
+        echo "<th>Nom</th>";
+        echo "<th>Pseudo</th>";
+        echo "<th>Courriel</th>";
+        echo "</tr>";
 
-            while ($enreg = $liste_joueurs->fetch_row())
-            {
-                echo"<tr>";
-                    echo "<td>$enreg[0]</td>";
-                    echo "<td>$enreg[1]</td>";
-                    echo "<td>$enreg[2]</td>";
-                    echo "<td>$enreg[3]</td>";
-                echo "</tr>";
-            }
-            echo "</table>";
-            $liste_joueurs->free();
+        foreach ($liste_joueurs as $joueur) { // Boucle foreach simplifiée
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($joueur['prenom']) . "</td>"; // htmlspecialchars pour la sécurité
+            echo "<td>" . htmlspecialchars($joueur['nomfamille']) . "</td>";
+            echo "<td>" . htmlspecialchars($joueur['pseudo']) . "</td>";
+            echo "<td>" . htmlspecialchars($joueur['courriel']) . "</td>";
+            echo "</tr>";
         }
+        echo "</table>";
+        //$liste_joueurs->free(); // Pas nécessaire avec PDO et fetchAll
+    } else {
+        echo "<p class='message-erreur'>Aucun joueur trouvé.</p>"; //Message plus approprié.
     }
-    else
-    {
-        echo "<p class='message-erreur'>Nous sommes désolés, les items ne peuvent pas être affichés.</p>";
-        echo_debug($mysqli->error);
-    }
+} catch (PDOException $e) {
+    echo "<p class='message-erreur'>Erreur lors de la récupération des joueurs : " . htmlspecialchars($e->getMessage()) . "</p>"; // Affiche l'erreur PDO
+}
 
-    if (isset($_SESSION['usager'])) {
-        echo "<div style='text-align: center; margin-top: 20px;'>";
-        echo "<button class='boutton-style' onclick=\"window.location.href='formulaire-joueurs.php';\">Ajouter un joueur</button>";
-        echo "</div>";
-    }
 
-    require ('include/pied-page.inc');
-    require ('include/nettoyage.inc');
+if (isset($_SESSION['usager'])) {
+    echo "<div style='text-align: center; margin-top: 20px;'>";
+    echo "<button class='boutton-style' onclick=\"window.location.href='formulaire-joueurs.php';\">Ajouter un joueur</button>";
+    echo "</div>";
+}
+
+require ('include/pied-page.inc');
+require ('include/nettoyage.inc');
+?>
