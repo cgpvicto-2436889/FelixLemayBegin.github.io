@@ -20,7 +20,7 @@ if (!empty($_POST)) {
         $stmt->bindParam(':equipe', $equipe);
         $stmt->bindParam(':rang', $rang, PDO::PARAM_INT);
         $stmt->bindParam(':score', $score, PDO::PARAM_INT);
-        $stmt->bindParam(':dates', $date);
+        $stmt->bindParam(':date', $date);
 
         if ($stmt->execute()) {
             $_SESSION['operation_reussie'] = true;
