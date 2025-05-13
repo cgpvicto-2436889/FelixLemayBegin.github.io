@@ -2,6 +2,7 @@
 require_once 'include/ma-bibliotheque.php';
 require_once 'include/configuration.inc'; // Assurez-vous que ce fichier contient la connexion PDO à PostgreSQL
 
+// Affichage du message de session (succès ou erreur)
 if (isset($_SESSION['operation_reussie'])) {
     if ($_SESSION['operation_reussie'] === true) {
         echo "<div class='alert alert-success' role='alert'>";
@@ -11,34 +12,35 @@ if (isset($_SESSION['operation_reussie'])) {
         echo "<div class='alert alert-danger' role='alert'>";
     }
 
-    echo $_SESSION['message_operation'];
+    echo htmlspecialchars($_SESSION['message_operation'] ?? '');
     echo "</div>";
 
     $_SESSION['operation_reussie'] = null;
     $_SESSION['message_operation'] = null;
 }
 
-echo "";
-
+// Récupération des résultats depuis la base PostgreSQL
 try {
-    // La connexion PDO à PostgreSQL doit être établie dans configuration.inc
-    $requete = "SELECT slogan, rang, score_final, date_partie, equipes.id 
-                    FROM resultats 
-                    INNER JOIN equipes ON resultats.equipe_id = equipes.id 
-                    ORDER BY date_partie DESC";
+    $requete = "
+        SELECT slogan, rang, score_final, date_partie, equipes.id 
+        FROM resultats 
+        INNER JOIN equipes ON resultats.equipe_id = equipes.id 
+        ORDER BY date_partie DESC
+    ";
+
     $stmt = $pdo->prepare($requete);
     $stmt->execute();
-    $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC); // Utilisez fetchAll et FETCH_ASSOC
+    $resultats = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    if ($resultats) {
+    if ($resultats && count($resultats) > 0) {
         echo "<table class='table'>";
-        echo "<tr>";
-        echo "<th>Slogan</th>";
-        echo "<th>Rang</th>";
-        echo "<th>Score final</th>";
-        echo "<th>Date Partie</th>";
-        echo "<th>Actions</th>"; // Ajout d'une colonne pour le lien
-        echo "</tr>";
+        echo "<tr>
+                <th>Slogan</th>
+                <th>Rang</th>
+                <th>Score final</th>
+                <th>Date Partie</th>
+                <th>Actions</th>
+              </tr>";
 
         foreach ($resultats as $resultat) {
             echo "<tr>";
@@ -46,20 +48,20 @@ try {
             echo "<td>" . htmlspecialchars($resultat['rang']) . "</td>";
             echo "<td>" . htmlspecialchars($resultat['score_final']) . "</td>";
             echo "<td>" . htmlspecialchars($resultat['date_partie']) . "</td>";
-            echo "<td><a href='details-equipe.php?id=" . htmlspecialchars($resultat['id']) . "' class='boutton-style'>Afficher</a></td>"; // Utilisation de l'ID de l'équipe
+            echo "<td><a href='details-equipe.php?id=" . urlencode($resultat['id']) . "' class='boutton-style'>Afficher</a></td>";
             echo "</tr>";
         }
+
         echo "</table>";
         echo "<button class='boutton-style' onclick=\"window.location.href='formulaire-resultat.php';\">Ajouter un résultat</button>";
     } else {
-        echo "<p class='message-erreur'>Aucun résultat trouvé.</p>"; // Message plus approprié
+        echo "<p class='message-erreur'>Aucun résultat trouvé.</p>";
     }
+
 } catch (PDOException $e) {
-    echo "<p class='message-erreur'>Erreur lors de la récupération des résultats : " . htmlspecialchars($e->getMessage()) . "</p>"; // Afficher l'erreur PDO
+    echo "<p class='message-erreur'>Erreur lors de la récupération des résultats : " . htmlspecialchars($e->getMessage()) . "</p>";
 }
 
-echo "";
-
-require ('include/pied-page.inc');
-require ('include/nettoyage.inc');
+require('include/pied-page.inc');
+require('include/nettoyage.inc');
 ?>
