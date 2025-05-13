@@ -1,72 +1,52 @@
 <?php
-require('include/configuration.inc');
-
-$_SESSION['operation_reussie'] = null;
+require('include/Configuration.inc');
 
 if (!empty($_POST)) {
-    // Le formulaire a été soumis → pour l'instant, on ne fait rien
-    // Plus tard tu pourras traiter les données ici
+    // traiter le formulaire
+    // effectuer ensuite une redirection vers une autre page
 
-    // Exemple de redirection (temporaire) après traitement :
-    // header("Location: merci.php");
-    // exit;
-} else {
-    header("Location: resultats.php");
-    exit;
-}
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $score = intval(htmlspecialchars($_POST['score'], ENT_QUOTES));
+        $rang = intval(htmlspecialchars($_POST['rang'], ENT_QUOTES));
+        $equipe = htmlspecialchars($_POST['equipe'], ENT_QUOTES);
+        $date = htmlspecialchars($_POST['date'], ENT_QUOTES);
 
-foreach ($_POST as $cle => $valeur) {
-    $_POST[$cle] = htmlspecialchars($valeur);
-}
+        if (!$pdo) {
+            die("Erreur de connexion à la base de données.");
+        }
 
-$equipe = $_POST["equipe"];
-$rang = $_POST["rang"];
-$scoreFinal = $_POST["scoreFinal"];
-$dateAjout = $_POST["dateAjout"];
+        $requete3 = "INSERT INTO resultats (equipe_id, rang, score_final, date_partie) VALUES (:equipe, :rang, :score, :date)";
+        $stmt = $pdo->prepare($requete3);
+        $stmt->bindParam(':equipe', $equipe);
+        $stmt->bindParam(':rang', $rang, PDO::PARAM_INT);
+        $stmt->bindParam(':score', $score, PDO::PARAM_INT);
+        $stmt->bindParam(':date', $date);
 
-if (isset($_POST['equipe'])) {
-    $equipe = $_POST['equipe'];
-}
-if (isset($_POST['rang'])) {
-    $rang = $_POST['rang'];
-}
-if (isset($_POST['scoreFinal'])) {
-    $scoreFinal = $_POST['scoreFinal'];
-}
-if (isset($_POST['dateAjout'])) {
-    $dateAjout = $_POST['dateAjout'];
-}
-
-$messageErreur = '';
-
-if ('' == $messageErreur) {
-    $requete = "INSERT INTO resultats (equipe_id, rang, score_final, date_partie) VALUES (:equipe, :rang, :scoreFinal, :dateAjout)";
-
-    try {
-        $stmt = $pdo->prepare($requete);
-        $stmt->bindValue(':equipe', $equipe, PDO::PARAM_INT);
-        $stmt->bindValue(':rang', $rang, PDO::PARAM_INT);
-        $stmt->bindValue(':scoreFinal', $scoreFinal, PDO::PARAM_INT);
-        $stmt->bindValue(':dateAjout', $dateAjout, PDO::PARAM_STR);
-        $stmt->execute();
-
-        if ($stmt->rowCount() > 0) {
+        if ($stmt->execute()) {
             $_SESSION['operation_reussie'] = true;
-            $_SESSION['message_operation'] = "L'équipe a été ajoutée avec succès !";
+            $_SESSION['message_operation'] = "La demande a été effectuée avec succès !";
         } else {
             $_SESSION['operation_reussie'] = false;
-            $_SESSION['message_operation'] = "Nous sommes désolés, un problème technique nous empêche d'enregistrer l'équipe.";
+            $_SESSION['message_operation'] = "Oups...!";
+            // Vous pouvez afficher l'erreur SQL pour le débogage si nécessaire
+            // error_log("Erreur SQL: " . $stmt->errorInfo()[2]);
         }
-    } catch (PDOException $e) {
-        $_SESSION['message_operation'] = "Nous sommes désolés, un problème technique nous empêche d'enregistrer l'équipe (code 2).";
-        log_debug($e->getMessage());
-    } catch (Exception $e) {
-        $_SESSION['message_operation'] = "Nous sommes désolés, un problème technique nous empêche d'enregistrer l'équipe (code 3).";
-        log_debug($e->getMessage());
+        $stmt->closeCursor();
     }
+} else {
+    // réagir si l'appel ne provient pas du formulaire
+    // par exemple, ici, on redirige vers la page d'accueil sans avertissement
+    include ('include/entete.inc');
+    echo "Veuillez accéder à cette page à partir du formulaire.";
+    include ('include/pied-page.inc');
 }
 
-header('Location: resultats.php');
+header('Location: index.php');
+
+// *** protection XSS ******************************************************************
+foreach ($_POST as $cle => $valeur) {
+    $_POST[$cle] = htmlspecialchars($valeur, ENT_QUOTES);
+}
 
 require('include/nettoyage.inc');
 ?>
