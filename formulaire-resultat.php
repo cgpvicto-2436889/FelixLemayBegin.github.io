@@ -30,11 +30,11 @@ try {
     </select>
 
     <label for="rang">Rang * :</label>
-    <input type="text" id="rang" name="rang">
+    <input type="number" id="rang" name="rang">
     <span class="message-erreur-formulaire" id="erreurRang"></span>
 
     <label for="scoreFinal">Score final * :</label>
-    <input type="text" id="scoreFinal" name="scoreFinal" maxlength="100">
+    <input type="number" id="scoreFinal" name="scoreFinal" maxlength="100">
     <span class="message-erreur-formulaire" id="erreurScoreFinal"></span>
 
     <label for="dateAjout">Date ajout *:</label>

@@ -6,10 +6,10 @@ if (!empty($_POST)) {
     // effectuer ensuite une redirection vers une autre page
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $score = intval(htmlspecialchars($_POST['score'], ENT_QUOTES));
+        $score = intval(htmlspecialchars($_POST['scoreFinal'], ENT_QUOTES));
         $rang = intval(htmlspecialchars($_POST['rang'], ENT_QUOTES));
         $equipe = htmlspecialchars($_POST['equipe'], ENT_QUOTES);
-        $date = htmlspecialchars($_POST['date'], ENT_QUOTES);
+        $date = htmlspecialchars($_POST['dateAjout'], ENT_QUOTES);
 
         if (!$pdo) {
             die("Erreur de connexion à la base de données.");
@@ -20,7 +20,7 @@ if (!empty($_POST)) {
         $stmt->bindParam(':equipe', $equipe);
         $stmt->bindParam(':rang', $rang, PDO::PARAM_INT);
         $stmt->bindParam(':score', $score, PDO::PARAM_INT);
-        $stmt->bindParam(':date', $date);
+        $stmt->bindParam(':dates', $date);
 
         if ($stmt->execute()) {
             $_SESSION['operation_reussie'] = true;
