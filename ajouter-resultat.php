@@ -1,5 +1,5 @@
 <?php
-require('include/Configuration.inc');
+require('include/configuration.inc');
 
 if (!empty($_POST)) {
     // traiter le formulaire
