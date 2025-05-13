@@ -56,7 +56,7 @@
     echo "<div class='separation'></div>";
     echo "<header>";
     echo "    <div class='logo-text container'>";
-    echo "        <div class='logo'><img src='medias/commun/logoLanParty.png'></div>";
+    echo "        <div class='logo'><img src='../medias/commun/LogoLANParty.png'></div>";
     echo "        <div>";
     echo "            <div class= title>$titre</div>";
     echo "        </div>";
