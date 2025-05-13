@@ -36,6 +36,4 @@ $motDePasse = $_POST['motdepasse'] ?? '';
         header('Location: formulaire-authentification.php');
         exit;
     }
-
-header('Location: index.php');
 ?>
