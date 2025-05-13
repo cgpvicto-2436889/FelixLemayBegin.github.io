@@ -1,39 +1,57 @@
 <?php
-require('include/configuration.inc');
+require('include/Configuration.inc');
 
-$code = $_POST['code'] ?? '';
-$motDePasse = $_POST['motdepasse'] ?? '';
+if (!empty($_POST)) {
+    $codeOk = false;
+    $mdpOk = false;
+    $actifOk = false;
 
-if (empty($code) || empty($motDePasse)) {
-    $_SESSION['erreur_auth'] = "Le code et le mot de passe sont requis.";
-    header('Location: formulaire-authentification.php');
-    exit;
-}
+    if ($_SERVER['REQUEST_METHOD'] === 'POST')
+    {
+        $code = htmlspecialchars($_POST['code'], ENT_QUOTES);
+        $mdp = htmlspecialchars($_POST['motdepasse'], ENT_QUOTES);
 
-try {
-    $requete = "SELECT * FROM usagers WHERE code = :code AND actif = 1";
-    $stmt = $pdo->prepare($requete);
-    $stmt->bindParam(':code', $code);
-    $stmt->execute();
+        $requete = "SELECT code, motdepasse, actif, prenom, nomfamille FROM usagers WHERE code = '$code'";
+        try
+        {
+            $resultat = $pdo->query($requete);
+            $usager = $resultat->fetch(PDO::FETCH_ASSOC);
 
-    $usager = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($usager)
+            {
+                if ($code === $usager['code'])
+                {
+                    $codeOk = true;
+                }
 
-    if ($usager && password_verify($motDePasse, $usager['motdepasse'])) {
-        $_SESSION['usager'] = [
-            'id' => $usager['id'],
-            'prenom' => $usager['prenom'],
-            'nom' => $usager['nomfamille']
-        ];
-        header('Location: index.php');
-        exit;
-    } else {
-        $_SESSION['erreur_auth'] = "Code ou mot de passe invalide.";
-        header('Location: formulaire-authentification.php');
-        exit;
+                if (password_verify($mdp, $usager['motdepasse']))
+                {
+                    $mdpOk = true;
+                }
+
+                if ($usager['actif'])
+                {
+                    $actifOk = true;
+                }
+
+                if ($codeOk && $mdpOk && $actifOk)
+                {
+                    $_SESSION['message_operation'] = "Vous avez été connecté avec succès " . $usager['prenom'] . " " . $usager['nomfamille'] . "!";
+                    $_SESSION['est_authentifie'] = true;
+                } else {
+                    $_SESSION['message_operation'] = "Oups, une erreur s'est produite lors de l'authentification";
+                }
+            } else {
+                $_SESSION['message_operation'] = "Oups, une erreur s'est produite lors de l'authentification";
+            }
+        }
+        catch (PDOException $e)
+        {
+            echo "<p class='message-erreur'>Nous sommes désolés, les équipes ne peuvent pas être affichées.</p>";
+            error_log("Erreur PDO: " . $e->getMessage());
+        }
     }
-} catch (PDOException $e) {
-    $_SESSION['erreur_auth'] = "Erreur technique lors de l'authentification.";
-    header('Location: formulaire-authentification.php');
-    exit;
 }
-?>
+
+header('Location: index.php');
+exit;
