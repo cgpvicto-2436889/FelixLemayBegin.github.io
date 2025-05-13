@@ -1,6 +1,6 @@
 <?php
-require_once 'include/ma-bibliotheque.php';
-require_once 'include/configuration.inc'; // Assurez-vous que ce fichier contient la connexion PDO à PostgreSQL
+require_once 'include/configuration.inc';
+require_once 'include/entete.inc'
 
 if (isset($_SESSION['operation_reussie'])) {
     if ($_SESSION['operation_reussie'] === true) {

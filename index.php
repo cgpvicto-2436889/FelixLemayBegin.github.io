@@ -19,7 +19,7 @@ $stmt = $pdo->query($requete);
 
 if ($stmt) {
     if ($stmt->rowCount() > 0) {
-        while ($enreg = $stmt->fetch(PDO::FETCH_ROW)) {
+        while ($enreg = $stmt->fetch(PDO::FETCH_NUM)) {
             echo '<div class="item first">';
             echo '<a href="#">';
             echo '<div class="content">';
