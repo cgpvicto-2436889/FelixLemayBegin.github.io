@@ -36,11 +36,10 @@ if (!empty($_POST)) {
         } catch (PDOException $e) {
             $_SESSION['operation_reussie'] = false;
             $_SESSION['message_operation'] = "Nous sommes désolés, un problème technique nous empêche d'enregistrer le joueur.";
-            log_debug($e->getMessage()); // Tu dois avoir une fonction log_debug définie
+            error_log($e->getMessage()); // Tu dois avoir une fonction log_debug définie
         }
     }
 
-    echo "<!--Le modele vient de apical-->";
     header('Location: joueurs.php');
     exit;
 

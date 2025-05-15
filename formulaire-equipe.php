@@ -4,7 +4,9 @@
 
 if (isset($_SESSION['usager'])) {
     $requete = "SELECT id, nom FROM jeux";
-    $resultat = $mysqli->query($requete);
+    $stmt = $pdo->prepare($requete);
+    $stmt->execute();
+    $resultat = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
     echo '<form id="contactForm" method="post" action="ajouter-equipe.php">';

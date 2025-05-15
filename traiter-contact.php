@@ -43,11 +43,10 @@ if ($messageErreur === '') {
     } catch (PDOException $e) {
         $_SESSION['operation_reussie'] = false;
         $_SESSION['message_operation'] = "Nous sommes désolés, un problème technique empêche l'enregistrement du message.";
-        log_debug($e->getMessage()); // Fonction perso, à définir dans ton projet
+        error_log($e->getMessage()); // Fonction perso, à définir dans ton projet
     }
 }
 
-echo "<!--Le modèle vient de apical-->";
 header('Location: index.php');
 exit;
 
