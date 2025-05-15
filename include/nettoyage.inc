@@ -1,5 +1,5 @@
 <?php
-    if (isset($mysqli))
+    if (isset($pdo))
     {
-        $mysqli->close();
+        $pdo = null;
     }
