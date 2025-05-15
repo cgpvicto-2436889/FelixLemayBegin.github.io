@@ -11,7 +11,7 @@ $motDePasse = $_POST['motdepasse'] ?? '';
     }
 
     try {
-        $requete = "SELECT * FROM usagers WHERE code = :code AND actif = 1";
+        $requete = "SELECT * FROM usagers WHERE code = :code AND actif = TRUE";
         $stmt = $pdo->prepare($requete);
         $stmt->bindParam(':code', $code);
         $stmt->execute();
