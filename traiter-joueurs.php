@@ -8,8 +8,6 @@ if (!empty($_POST)) {
         $_POST[$cle] = htmlspecialchars($valeur);
     }
 
-    echo "<!--Vient de apical-->";
-
     $nomfamille = $_POST["nom"] ?? '';
     $prenom     = $_POST["prenom"] ?? '';
     $pseudo     = $_POST["pseudo"] ?? '';

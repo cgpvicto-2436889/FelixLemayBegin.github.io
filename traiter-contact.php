@@ -15,8 +15,6 @@ foreach ($_POST as $cle => $valeur) {
     $_POST[$cle] = htmlspecialchars($valeur);
 }
 
-echo "<!--Vient de apical-->";
-
 // Récupération des champs du formulaire
 $nom      = $_POST['nom'] ?? '';
 $sujet    = $_POST['sujet'] ?? '';
