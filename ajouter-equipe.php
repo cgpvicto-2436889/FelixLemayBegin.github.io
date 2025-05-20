@@ -44,8 +44,8 @@ if ('' === $messageErreur) {
         }
     } catch (PDOException $e) {
         $_SESSION['operation_reussie'] = false;
-        $_SESSION['message_operation'] = "Nous sommes désolés, un problème technique nous empêche d'enregistrer le client (code 2).";
-        log_debug($e->getMessage());
+        $_SESSION['message_operation'] = "Erreur technique : " . $e->getMessage(); // temporairement
+        error_log($e->getMessage()); // conserve pour logs
     } catch (Error $e) {
         $_SESSION['operation_reussie'] = false;
         $_SESSION['message_operation'] = "Nous sommes désolés, un problème technique nous empêche d'enregistrer le client (code 3).";
