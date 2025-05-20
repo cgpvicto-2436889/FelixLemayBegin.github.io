@@ -53,7 +53,9 @@ try {
         }
 
         echo "</table>";
-        echo "<button class='boutton-style' onclick=\"window.location.href='formulaire-resultat.php';\">Ajouter un résultat</button>";
+        if (isset($_SESSION['usager'])) {
+            echo "<button class='boutton-style' onclick=\"window.location.href='formulaire-resultat.php';\">Ajouter un résultat</button>";
+        }
     } else {
         echo "<p class='message-erreur'>Aucun résultat trouvé.</p>";
     }

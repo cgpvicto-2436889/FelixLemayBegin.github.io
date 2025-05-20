@@ -4,7 +4,7 @@
 
     if (isset($_SESSION['usager'])) {
         echo '<form id="contactForm" method="post" action="traiter-joueurs.php">';
-        echo '<h2 style="text-align: center;">AJouter un joueur</h2>s';
+        echo '<h2 style="text-align: center;">AJouter un joueur</h2>';
         echo '<label for="nom">Nom * :</label>';
         echo '<input type="text" id="nom" name="nom" maxlength="100">';
         echo '<span class="message-erreur-formulaire" id="erreurNom"></span>';
