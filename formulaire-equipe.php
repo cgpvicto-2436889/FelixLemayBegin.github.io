@@ -19,10 +19,6 @@ if (isset($_SESSION['usager'])) {
     echo '<input type="text" id="slogan" name="slogan" maxlength="100">';
     echo '<span class="message-erreur-formulaire" id="erreurSlogan"></span>';
 
-    echo '<label for="commentaire">Commentaire :</label>';
-    echo '<input type="text" id="commentaire" name="commentaire">';
-    echo '<span class="message-erreur-formulaire" id="erreurCommentaire"></span>';
-
     echo '<label for="dateAjout">Date ajout *:</label>';
     echo '<input type="date" id="dateAjout" name="dateAjout">';
     echo '<span class="message-erreur-formulaire" id="erreurDateAjout"></span>';
