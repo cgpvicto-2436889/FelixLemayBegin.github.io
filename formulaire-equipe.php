@@ -29,7 +29,7 @@ if (isset($_SESSION['usager'])) {
 
     echo '<label for="jeu">Jeu *:</label>';
     echo '<select name="jeu" id="jeu">';
-    while ($jeu = $resultat->fetch_assoc()) {
+    foreach ($resultat as $jeu) {
         echo '<option value="' . htmlspecialchars($jeu['id']) . '">';
         echo htmlspecialchars($jeu['id']) . ' - ' . htmlspecialchars($jeu['nom']);
         echo '</option>';
