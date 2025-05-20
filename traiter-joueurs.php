@@ -33,16 +33,18 @@ if (!empty($_POST)) {
 
         } catch (PDOException $e) {
             $_SESSION['operation_reussie'] = false;
-            $_SESSION['message_operation'] = "Nous sommes désolés, un problème technique nous empêche d'enregistrer le joueur.";
-            error_log($e->getMessage()); // Tu dois avoir une fonction log_debug définie
+            $_SESSION['message_operation'] = "Erreur technique : " . $e->getMessage(); // temporairement
+            error_log($e->getMessage()); // conserve pour logs}
         }
     }
 
+    require('include/nettoyage.inc');
     header('Location: joueurs.php');
     exit;
-    require('include/nettoyage.inc');
+
 } else {
+    require('include/nettoyage.inc');
     header("Location: joueurs.php");
     exit;
-    require('include/nettoyage.inc');
+
 }

@@ -49,9 +49,7 @@ try {
         echo "<p class='message-erreur'>Aucun joueur trouvé.</p>"; //Message plus approprié.
     }
 } catch (PDOException $e) {
-    $_SESSION['operation_reussie'] = false;
-    $_SESSION['message_operation'] = "Erreur technique : " . $e->getMessage(); // temporairement
-    error_log($e->getMessage()); // conserve pour logs}
+    echo "<p class='message-erreur'>Erreur lors de la récupération des joueurs : " . htmlspecialchars($e->getMessage()) . "</p>"; // Affiche l'erreur PDO
 }
 
 
