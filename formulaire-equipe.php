@@ -11,6 +11,7 @@ if (isset($_SESSION['usager'])) {
 
     echo '<form id="contactForm" method="post" action="ajouter-equipe.php">';
     echo '<h2 style="text-align: center;">AJouter une équipe</h2>';
+
     echo '<label for="nom">Nom * :</label>';
     echo '<input type="text" id="nom" name="nom" maxlength="50">';
     echo '<span class="message-erreur-formulaire" id="erreurNom"></span>';

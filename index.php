@@ -21,18 +21,16 @@ if ($stmt) {
     if ($stmt->rowCount() > 0) {
         while ($enreg = $stmt->fetch(PDO::FETCH_NUM)) {
             echo '<div class="item first">';
-            echo '<a href="#">';
-            echo '<div class="content">';
-            echo '</div>';
-            echo '<div class="caption">';
-            echo '<div class="middle">';
-            echo '<i class="fa-solid fa-shield"></i>';
-            echo '</div>';
-            echo "<div class='title'>$enreg[0]</div>";
-            echo "<div class='subtitle'>$enreg[1]</div>";
-            echo '</div>';
-            echo " <a href='details-equipe.php?id=" . $enreg[2] . "' class='boutton-style'>Joueurs</a> ";
-            echo '</a>';
+            echo '  <div class="content">';
+            echo '    <div class="caption">';
+            echo '      <div class="middle">';
+            echo '        <i class="fa-solid fa-shield"></i>';
+            echo '      </div>';
+            echo '      <div class="title">' . htmlspecialchars($enreg[0]) . '</div>';
+            echo '      <div class="subtitle">' . nl2br(htmlspecialchars($enreg[1])) . '</div>';
+            echo '    </div>';
+            echo '  </div>';
+            echo '  <a href="details-equipe.php?id=' . $enreg[2] . '" class="boutton-style">Joueurs</a>';
             echo '</div>';
         }
     } else {
