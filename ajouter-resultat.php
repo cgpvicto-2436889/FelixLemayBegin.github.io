@@ -41,7 +41,7 @@ if (!empty($_POST)) {
     include ('include/pied-page.inc');
 }
 
-header('Location: index.php');
+header('Location: resultats.php');
 
 // *** protection XSS ******************************************************************
 foreach ($_POST as $cle => $valeur) {
@@ -49,4 +49,3 @@ foreach ($_POST as $cle => $valeur) {
 }
 
 require('include/nettoyage.inc');
-?>

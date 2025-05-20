@@ -40,11 +40,9 @@ if (!empty($_POST)) {
 
     header('Location: joueurs.php');
     exit;
-
+    require('include/nettoyage.inc');
 } else {
     header("Location: joueurs.php");
     exit;
+    require('include/nettoyage.inc');
 }
-
-require('include/nettoyage.inc');
-?>
