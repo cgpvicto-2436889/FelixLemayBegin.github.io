@@ -7,17 +7,6 @@ i {
     background-position: center;
 }
 
-.item1 { background-image: url("medias/commun/item1.jpg"); }
-.item2 { background-image: url("medias/commun/item2.jpg"); }
-.item3 { background-image: url("medias/commun/item3.jpg"); }
-.item4 { background-image: url("medias/commun/item4.jpg"); }
-.item5 { background-image: url("medias/commun/item5.jpg"); }
-.item6 { background-image: url("medias/commun/item6.jpg"); }
-.item7 { background-image: url("medias/commun/item7.jpg"); }
-.item8 { background-image: url("medias/commun/item8.jpg"); }
-.item9 { background-image: url("medias/commun/item9.jpg"); }
-.item10 { background-image: url("medias/commun/item10.jpg"); }
-
 .debug {
     display: block;
     background-color: #FCA12D;
