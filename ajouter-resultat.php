@@ -41,7 +41,7 @@ if (!empty($_POST)) {
     include ('include/pied-page.inc');
 }
 
-header('Location: resultat.php');
+header('Location: index.php');
 
 // *** protection XSS ******************************************************************
 foreach ($_POST as $cle => $valeur) {
