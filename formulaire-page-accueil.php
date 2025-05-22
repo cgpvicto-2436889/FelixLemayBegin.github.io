@@ -10,7 +10,7 @@ if (isset($_SESSION['usager'])) {
     $stmt->execute();
     $page = $stmt->fetch();
 
-    echo '<form id="contactForm" method="post" action="enregistrement-page-accueil.php">';
+    echo '<form id="contactForm" method="post" action="enregistrer-page-accueil.php">';
     echo '<h2 style="text-align: center;">Ajouter un joueur</h2>';
 
     echo '<label for="texteIndex">Texte dans l’entête de index :</label>';
