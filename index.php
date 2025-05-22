@@ -2,6 +2,10 @@
 require ('include/configuration.inc');
 require ('include/entete.inc');
 
+$stmt = $pdo->prepare("SELECT texte FROM pages WHERE url = 'index.php'");
+$stmt->execute();
+$page = $stmt->fetch();
+
 if (isset($_GET['message'])) {
     if ($_GET['message'] === 'ajoutE-ok') {
         echo '<p class="confirmation">Votre equipe a bien été créée !</p>';
@@ -48,9 +52,12 @@ if (isset($_SESSION['usager'])) {
     echo '    <a href="formulaire-equipe.php" class="boutton-style">Ajouter une équipe</a>';
     echo '</div>';
 }
-
-
+echo  '</div>';
+if (isset($_SESSION['usager'])) {
+    echo '<div class="boutton-container">';
+    echo '    <a href="formulaire-page-accueil.php" class="boutton-style">Ajouter du texte d acceuil</a>';
+    echo '</div>';
+}
 
 require ('include/pied-page.inc');
 require ('include/nettoyage.inc');
-?>
