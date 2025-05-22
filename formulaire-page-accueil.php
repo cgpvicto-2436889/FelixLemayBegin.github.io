@@ -10,12 +10,12 @@ if (isset($_SESSION['usager'])) {
     $stmt->execute();
     $page = $stmt->fetch();
 
-    echo '<form id="contactForm" method="post" action="traiter-joueurs.php">';
+    echo '<form id="contactForm" method="post" action="enregistrement-page-accueil.php">';
     echo '<h2 style="text-align: center;">Ajouter un joueur</h2>';
 
     echo '<label for="texteIndex">Texte dans l’entête de index :</label>';
-    echo '<textarea name="texte" class="tinymce" rows="15" cols="80">' . $page['texte'] . '</textarea>';
-    echo '<span class="message-erreur-formulaire" id="erreurNom"></span>';
+    echo '<textarea name="texte" class="tinymce" rows="15" cols="80">Ajouter du texte</textarea>';
+    echo '<span class="message-erreur-formulaire" id="erreurTexteIndex"></span>';
     echo '<button type="submit">Enregistrer</button>';
     echo '</form>';
 }
