@@ -2,9 +2,7 @@
 require ('include/configuration.inc');
 require ('include/entete.inc');
 
-$stmt = $pdo->prepare("SELECT texte FROM pages WHERE url = 'index.php'");
-$stmt->execute();
-$page = $stmt->fetch();
+
 
 if (isset($_GET['message'])) {
     if ($_GET['message'] === 'ajoutE-ok') {
@@ -13,6 +11,10 @@ if (isset($_GET['message'])) {
         echo '<p class="erreur">Une erreur est survenue. Veuillez réessayer plus tard.</p>';
     }
 }
+
+$stmt = $pdo->prepare("SELECT texte FROM pages WHERE url = 'index.php'");
+$stmt->execute();
+
 echo  '<div class="items">';
 $requete = "SELECT nom, slogan, id FROM equipes";
 $stmt = $pdo->query($requete);
