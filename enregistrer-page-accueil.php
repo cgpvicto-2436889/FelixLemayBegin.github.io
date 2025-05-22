@@ -8,7 +8,7 @@ if (!isset($_SESSION['usager'])) {
 
 // Mise à jour sans protection XSS (car on veut garder le HTML)
 if (isset($_POST['texte'])) {
-    $stmt = $pdo->prepare("UPDATE pages SET texte = ?, modification = NOW() WHERE url = 'index'");
+    $stmt = $pdo->prepare("UPDATE pages SET texte = ?, modification = NOW() WHERE url = 'index.php'");
     $stmt->execute([$_POST['texte']]);
 }
 
