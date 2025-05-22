@@ -188,3 +188,7 @@ nav {
 .icone-auth:hover {
     color: #f0a500;
 }
+
+.accueil-text {
+    text-align: center;
+}
