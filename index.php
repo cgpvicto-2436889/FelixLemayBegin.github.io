@@ -14,6 +14,13 @@ if (isset($_GET['message'])) {
 
 $stmt = $pdo->prepare("SELECT texte FROM pages WHERE url = 'index.php'");
 $stmt->execute();
+$indexText = $stmt->fetchColumn();
+
+if ($indexText) {
+    echo '<div class="accueil-text">';
+    echo $indexText;
+    echo '</div>';
+}
 
 echo  '<div class="items">';
 $requete = "SELECT nom, slogan, id FROM equipes";
