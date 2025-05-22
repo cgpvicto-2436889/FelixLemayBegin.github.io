@@ -9,11 +9,11 @@ i {
 
 .debug {
     display: block;
-    background-color: #FCA12D;
+    background-color: var(--couleur-punch-pale); /* Using punch color */
     color: black;
     font-size: 1.1em;
     padding: 5px 10px;
-    border: 1px solid #F18A04;
+    border: 1px solid var(--couleur-punch-fonce); /* Using darker punch color */
     border-radius: 5px;
     margin: 15px 0;
 }
@@ -30,19 +30,19 @@ i {
 }
 
 .table, .table th, .table td {
-    border: 1px solid rgb(160, 160, 160);
+    border: 1px solid var(--couleur-principale-tres-pale); /* Using a pale principal color for borders */
     padding: 15px;
 }
 
 .table th {
-    background: #28ade6;
-    color: white;
+    background: var(--couleur-principale-fonce); /* Using dark principal color for table headers */
+    color: var(--couleur-secondaire-pale); /* Using pale secondary color for text */
     font-size: 18px;
 }
 
 .boutton-style {
-    background-color: green;
-    color: white;
+    background-color: var(--couleur-punch-fonce); /* Using darker punch color */
+    color: var(--couleur-secondaire-pale); /* Using pale secondary color for text */
     padding: 10px 20px;
     border: none;
     font-size: 16px;
@@ -55,16 +55,16 @@ i {
 }
 
 .boutton-style:hover {
-    background-color: #0056b3;
+    background-color: var(--couleur-punch-pale); /* Using lighter punch color on hover */
 }
 
 .boutton-style:focus {
     outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* You might want to adjust this color as well */
 }
 
 .boutton-style:active {
-    background-color: #003f7f;
+    background-color: var(--couleur-principale-fonce); /* A darker active state */
 }
 
 .boutton-container {
@@ -76,7 +76,7 @@ form {
     width: 50%;
     margin: auto;
     padding: 20px;
-    background: #f9f9f9;
+    background: var(--couleur-secondaire-pale); /* Using pale secondary color */
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
@@ -85,13 +85,14 @@ label {
     display: block;
     margin-top: 10px;
     font-weight: bold;
+    color: var(--couleur-principale-fonce); /* Label color */
 }
 
 input, textarea {
     width: 100%;
     padding: 10px;
     margin-top: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--couleur-principale-tres-pale); /* Border color */
     border-radius: 5px;
 }
 
@@ -100,11 +101,11 @@ input, textarea {
 }
 
 .message-erreur-formulaire {
-    color: red;
+    color: #CC0000; /* Keeping a strong red for errors, or define a new variable for error states */
 }
 
 .controle-erreur {
-    border: 2px solid red;
+    border: 2px solid #CC0000; /* Keeping a strong red for errors */
 }
 
 .alert {
@@ -114,17 +115,17 @@ input, textarea {
     margin-top: 5px;
     margin-bottom: 7px;
     padding: 15px 20px;
-    border: 1px solid #bebdbd;
+    border: 1px solid var(--couleur-principale-pale); /* Using a principal color */
     border-radius: 5px;
     box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
 }
 
 .alert-success {
-    background-color: #55b559;
+    background-color: #4CAF50; /* A standard green for success */
 }
 
 .alert-danger {
-    background-color: #f55145;
+    background-color: #F44336; /* A standard red for danger */
 }
 
 nav {
@@ -167,7 +168,7 @@ nav {
 }
 
 .texte-auth {
-    color: red;
+    color: var(--couleur-punch-pale); /* Using a punch color */
     margin-right: 10px;
     font-weight: bold;
     display: inline-block;
@@ -175,18 +176,18 @@ nav {
 }
 
 .nav-gauche a:hover {
-    color: #2C3111; /* J'ai remis la couleur au survol */
+    color: var(--couleur-punch-fonce); /* J'ai remis la couleur au survol */
 }
 
 .icone-auth {
-    color: #fff;
+    color: var(--couleur-secondaire-pale);
     text-decoration: none;
     display: flex;
     align-items: center;
 }
 
 .icone-auth:hover {
-    color: #f0a500;
+    color: var(--couleur-punch-pale); /* Using punch color on hover */
 }
 
 .accueil-text {

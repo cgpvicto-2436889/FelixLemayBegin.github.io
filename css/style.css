@@ -10,17 +10,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200..800&display=swap');
 
 :root {
-    --couleur-principale-fonce: #4E5D3C;
-    --couleur-principale-pale: #6C7151;
-    --couleur-principale-tres-pale: #959A74;
-    --couleur-secondaire-fonce: #EAEDD5;
-    --couleur-secondaire-pale: #F5F5DF;
-    --couleur-punch-fonce: #695483;
-    --couleur-punch-pale: #B874A8;
+    --couleur-principale-fonce: #36454F; /* Charcoal Grey */
+    --couleur-principale-pale: #5A6A75;  /* Darker Slate Grey */
+    --couleur-principale-tres-pale: #8CA0AE; /* Muted Blue Grey */
+    --couleur-secondaire-fonce: #E8EBEF; /* Light Grey Blue */
+    --couleur-secondaire-pale: #F5F7FA; /* Off-White */
+    --couleur-punch-fonce: #8B4513; /* Saddle Brown (for contrast) */
+    --couleur-punch-pale: #D2691E; /* Chocolate (a lighter punch) */
 }
 
 * {
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 body {
@@ -87,7 +87,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #2C3111;
+    color: var(--couleur-punch-pale); /* Changed to use punch color for hover */
 }
 
 nav a.active {
