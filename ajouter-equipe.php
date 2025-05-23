@@ -57,6 +57,13 @@ if ($messageErreur === '') {
     $_SESSION['message_operation'] = $messageErreur;
 }
 
-require('include/nettoyage.inc');
+if ($stmt->execute()) {
+    header('Location: index.php?message=ajoutE-ok');
+    exit;
+} else {
+    echo "Erreur lors de l'ajout de l'équipe.";
+}
+
 header('Location: index.php');
+require('include/nettoyage.inc');
 exit;
